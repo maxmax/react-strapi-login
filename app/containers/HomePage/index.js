@@ -12,29 +12,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-// Design
-import Button from 'components/Button';
-
-// Utils
-import auth from 'utils/auth';
-
 import './styles.scss';
 
 export default class HomePage extends React.Component { // eslint-disable-line react/prefer-stateless-function
-  state = { showButton: false }
-
-  componentDidMount() {
-    if (auth.getToken()) {
-      this.setState({ showButton: true });
-    }
-  }
-
-  logout = (e) => {
-    e.preventDefault();
-    auth.clearAppStorage();
-    this.setState({ showButton: false });
-  }
-
   render() {
     return (
       <section className="container">
@@ -48,9 +28,6 @@ export default class HomePage extends React.Component { // eslint-disable-line r
           <p>
             Try to access a protected url by either changing the url from the browser or by clicking on the <Link to={'/${Math.random}'}>link</Link>
           </p>
-          { this.state.showButton ? (
-            <Button primary onClick={this.logout} type="button">Logout</Button>
-          ) : ''}
         </article>
       </section>
     );

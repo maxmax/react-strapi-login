@@ -13,24 +13,31 @@
 
 import React from 'react';
 import { Switch, Route } from 'react-router-dom';
+import styled from 'styled-components';
 
+import Navigation from 'containers/Navigation/Loadable';
 import AuthPage from 'containers/AuthPage';
 import ConnectPage from 'containers/ConnectPage';
 import HomePage from 'containers/HomePage/Loadable';
 import NotFoundPage from 'containers/NotFoundPage/Loadable';
 import SecurePage from 'containers/SecurePage';
+import SettingsPage from 'containers/SettingsPage';
 import ProtectedRoute from 'containers/ProtectedRoute';
+
+const AppWrapper = styled.div``;
 
 export default function App() {
   return (
-    <div>
+    <AppWrapper>
+      <Navigation />
       <Switch>
         <Route exact path="/" component={HomePage} />
+        <ProtectedRoute exact path="/settings/" component={SettingsPage} />
         <Route exact path="/connect/:provider" component={ConnectPage} />
         <Route exact path="/auth/:authType/:id?" component={AuthPage} />
         <ProtectedRoute exact path="/:foo" component={SecurePage} />
         <Route component={NotFoundPage} />
       </Switch>
-    </div>
+    </AppWrapper>
   );
 }

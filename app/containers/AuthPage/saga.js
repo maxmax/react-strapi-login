@@ -10,6 +10,8 @@ import request from 'utils/request';
 import { makeSelectFormType, makeSelectModifiedData } from './selectors';
 import { SUBMIT } from './constants';
 
+// const apiEndpoint = 'https://hidden-falls-59190.herokuapp.com';
+
 export function* submitForm() {
   try {
     const formType = yield select(makeSelectFormType());
@@ -18,16 +20,16 @@ export function* submitForm() {
 
     switch (formType) {
       case 'login':
-        requestURL = 'http://localhost:1337/auth/local';
+        requestURL = 'https://hidden-falls-59190.herokuapp.com/auth/local';
         break;
       case 'register':
-        requestURL = 'http://localhost:1337/auth/local/register';
+        requestURL = 'https://hidden-falls-59190.herokuapp.com/auth/local/register';
         break;
       case 'reset-password':
-        requestURL = 'http://localhost:1337/auth/reset-password';
+        requestURL = 'https://hidden-falls-59190.herokuapp.com/auth/reset-password';
         break;
       case 'forgot-password':
-        requestURL = 'http://localhost:1337/auth/forgot-password';
+        requestURL = 'https://hidden-falls-59190.herokuapp.com/auth/forgot-password';
         set(body, 'url', 'http://localhost:3000/auth/reset-password');
         break;
       default:

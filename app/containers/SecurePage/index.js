@@ -18,10 +18,19 @@ import makeSelectSecurePage from './selectors';
 import reducer from './reducer';
 import saga from './saga';
 
-const Wrapper = styled.div``;
+const Wrapper = styled.div`
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  padding-top: 10rem;
+  padding-bottom: 10rem;
+  background: #fafafb;
+  text-align: center;
+`;
 
 const Well = styled.div`
-  border-color: #4CAF50;
+  border: 4px solid #4CAF50;
+  padding: 35px;
   width: 800px;
   max-width: 100%;
 `;
@@ -30,18 +39,16 @@ export class SecurePage extends React.Component { // eslint-disable-line react/p
   render() {
     return (
       <Wrapper>
-        <section className="container">
-          <Well className="well">
-            <h1>Now that you are logged in you have access to this page</h1>
-            <hr />
-            <p>
-              <Link to={`/${Math.random()}`}>Go to another protected url</Link>
-            </p>
-            <p>
-              <Link to="/">Back to HomePage</Link>
-            </p>
-          </Well>
-        </section>
+        <Well>
+          <h1>Now that you are logged in you have access to this page</h1>
+          <hr />
+          <p>
+            <Link to={`/${Math.random()}`}>Go to another protected url</Link>
+          </p>
+          <p>
+            <Link to="/">Back to HomePage</Link>
+          </p>
+        </Well>
       </Wrapper>
     );
   }
