@@ -4,8 +4,8 @@
  *
  */
 
- import { fromJS } from 'immutable';
- import {
+import { fromJS } from 'immutable';
+import {
   GET_SETTING_PAGE,
   GET_SETTING_PAGE_SUCCESS,
   GET_SETTING_PAGE_ERROR,

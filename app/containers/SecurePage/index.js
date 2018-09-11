@@ -22,9 +22,8 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: space-around;
   width: 100%;
-  padding-top: 10rem;
-  padding-bottom: 10rem;
-  background: #fafafb;
+  padding-top: 5rem;
+  padding-bottom: 5rem;
   text-align: center;
 `;
 

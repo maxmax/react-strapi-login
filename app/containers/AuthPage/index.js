@@ -17,6 +17,7 @@ import FormDivider from 'components/FormDivider';
 import Input from 'components/Input';
 import Logo from 'images/logo_strapi.png';
 import SocialLink from 'components/SocialLink';
+import Spinner from 'components/Spinner';
 
 // Utils
 import injectSaga from 'utils/injectSaga';
@@ -33,6 +34,14 @@ import saga from './saga';
 import './styles.scss';
 
 export class AuthPage extends React.Component { // eslint-disable-line react/prefer-stateless-function
+
+  constructor(props) {
+    super(props);
+    this.state = {
+      pending: false,
+    };
+  }
+
   componentDidMount() {
     this.setForm(this.props);
   }
@@ -81,6 +90,12 @@ export class AuthPage extends React.Component { // eslint-disable-line react/pre
     );
   }
 
+  onSubmitForm = (e) => {
+    e.preventDefault();
+    this.props.submit();
+    // this.setState({ pending: true });
+  }
+
   render() {
     const divStyle = this.props.match.params.authType === 'register' ? { marginTop: '3.2rem' } : { marginTop: '.9rem' };
     const inputs = get(form, this.props.match.params.authType) || [];
@@ -90,6 +105,7 @@ export class AuthPage extends React.Component { // eslint-disable-line react/pre
     return (
       <div className="authPage">
         <div className="wrapper">
+          { this.state.pending ? <Spinner /> : null}
           <div className="headerContainer">
             {this.props.match.params.authType === 'register' ? (
               <span>Welcome !</span>
@@ -112,7 +128,8 @@ export class AuthPage extends React.Component { // eslint-disable-line react/pre
                 </div>
               </div>
               {/* <FormDivider />*/}
-              <form onSubmit={(e) => { e.preventDefault(); this.props.submit(); }}>
+              {/* <form onSubmit={(e) => { e.preventDefault(); this.props.submit(); }}>*/}
+              <form onSubmit={(e) => { this.onSubmitForm(e); }}>
                 <div className="row" style={{ textAlign: 'start' }}>
                   {map(inputs, (input, key) => (
                     <Input

@@ -13,6 +13,7 @@ import { FormattedMessage } from 'react-intl';
 import { createStructuredSelector } from 'reselect';
 import { compose, bindActionCreators } from 'redux';
 import { Link } from 'react-router-dom';
+import ProfileCard from 'components/ProfileCard';
 
 import injectSaga from 'utils/injectSaga';
 import injectReducer from 'utils/injectReducer';
@@ -26,9 +27,8 @@ const Wrapper = styled.div`
   display: flex;
   justify-content: space-around;
   width: 100%;
-  padding-top: 10rem;
-  padding-bottom: 10rem;
-  background: #fafafb;
+  padding-top: 3rem;
+  padding-bottom: 3rem;
   text-align: center;
 `;
 
@@ -52,6 +52,10 @@ export class SettingsPage extends React.Component { // eslint-disable-line react
 
   render() {
     const { settingspage } = this.props;
+    const { role } = settingspage;
+
+    console.log('SettingsPage this.props', this.props);
+
     return (
       <div>
         <Helmet>
@@ -64,8 +68,12 @@ export class SettingsPage extends React.Component { // eslint-disable-line react
             <hr />
             {settingspage && (
               <div>
-                <p><b>{settingspage.username}</b></p>
-                <p><i>{settingspage.email}</i></p>
+                <ProfileCard
+                  name={settingspage.username}
+                  email={settingspage.email}
+                  role={role && role.name ? role.name : 'Default'}
+                  userId={settingspage.id}
+                />
               </div>
             )}
             <p>
@@ -79,8 +87,8 @@ export class SettingsPage extends React.Component { // eslint-disable-line react
 }
 
 SettingsPage.propTypes = {
-  actions: PropTypes.object.isRequired,
-  settingspage: PropTypes.object.isRequired,
+  actions: PropTypes.object,
+  settingspage: PropTypes.object,
 };
 
 const mapStateToProps = createStructuredSelector({

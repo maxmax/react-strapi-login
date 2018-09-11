@@ -47,7 +47,7 @@ export function* submitForm() {
       yield call(forwardTo, '/');
     }
   } catch(error) {
-    console.log(error.response.payload.message);
+    console.log('error!', error.response.payload.message);
   }
 }
 

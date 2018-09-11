@@ -22,9 +22,10 @@ import auth from 'utils/auth';
 const Wrapper = styled.div`
   display: block;
   width: 100%;
-  background: whitesmoke;
+  background: transparent;
   text-align: center;
-  border-bottom: 1px solid #ccc;
+  border-bottom: 1px solid transparent;
+  padding-top: 60px;
 `;
 
 const Ul = styled.ul`
@@ -35,14 +36,17 @@ const Ul = styled.ul`
 
 const Li = styled.li`
   display: inline-block;
+  text-transform: uppercase;
+  color: #0275d8;
   > a {
     display: inline-block;
     padding: 15px 20px;
+    color: #0275d8;
   }
 `;
 
 const ButtonStyled = styled(Button)`
-  border: 1px solid #ccc;
+  border: 0px;
   cursor: pointer;
 `;
 
